@@ -1,51 +1,25 @@
 import React from "react";
-import {View, Text, TextInput, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Text, TextInput, StyleSheet} from 'react-native';
 
-
-const App= ()=> {
+const Login= ()=> {
 return(
     <View style={styles.container}>
-        <Text style={{color:'white'}} >Counter</Text>
-
-        <View style={styles.loginButton}>
-              <Text style={styles.signUp}>Increment</Text>
+        <Text style={styles.logo}>Hey App</Text>
+        <View style={styles.inputView}>
+               <TextInput style={styles.inputText} placeholder="Username" />
         </View>
-        
-        <View style={styles.loginButton}>
-              <Text style={styles.signUp}>Decrement</Text>
+      
+        <View style= {styles.inputView}>
+           <TextInput style={styles.inputText} placeholder="Password" placeholderTextColor="#003f5c" />
         </View>
-       
-    </View>
-)};
-
-class Counter extends React.Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      counter: 0,
-    }
-  }
-  render() {
-    return(
-      <View style={styles.container}>
-        <Text style={{color:'white'}} >{this.state.counter}</Text>
-
+        <Text style={styles.forgot}> Forgot Password </Text>
         <View style={styles.loginButton}>
-              <Text style={styles.signUp} onPress={()=>{
-                this.setState({counter: this.state.counter + 1})
-              }}>Increment</Text>
-        </View>
-        
-        <View style={styles.loginButton}>
-        <Text style={styles.signUp} onPress={()=>{
-                this.setState({counter: this.state.counter - 1})
-              }}> Decrement </Text>
+           <Text>Login</Text>
         </View>
        
+        <Text style={styles.signUp}> Sign Up</Text>
     </View>
-    )
-  }
-}
+)}
 
 const styles= StyleSheet.create({
   container:{
@@ -96,4 +70,4 @@ const styles= StyleSheet.create({
     fontSize:14,
   },
 })
-export default Counter;
+export default Login;
