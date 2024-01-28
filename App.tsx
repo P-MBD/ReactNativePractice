@@ -3,16 +3,21 @@ import {View, Text, TextInput, StyleSheet, TouchableOpacity} from 'react-native'
 
 
 const App= ()=> {
+  const [counter, setCounter]= React.useState(0);
 return(
     <View style={styles.container}>
-        <Text style={{color:'white'}} >Counter</Text>
+        <Text style={{color:'white'}} >{counter}</Text>
 
         <View style={styles.loginButton}>
-              <Text style={styles.signUp}>Increment</Text>
+              <Text style={styles.signUp} onPress={()=> {
+                setCounter(counter+1)
+              }}>Increment</Text>
         </View>
         
         <View style={styles.loginButton}>
-              <Text style={styles.signUp}>Decrement</Text>
+              <Text style={styles.signUp} onPress={()=> {
+                setCounter(counter-1)
+              }}>Decrement</Text>
         </View>
        
     </View>
@@ -96,4 +101,4 @@ const styles= StyleSheet.create({
     fontSize:14,
   },
 })
-export default Counter;
+export default App;
