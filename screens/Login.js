@@ -1,10 +1,17 @@
 import React from "react";
 import {View, Text, TextInput, StyleSheet} from 'react-native';
 
-const Login= ()=> {
+const Login= ({ route, navigation })=> {
+  const { id,name } = route.params;
+
 return(
     <View style={styles.container}>
-        <Text style={styles.logo}>Hey App</Text>
+        <Text style={styles.logo}>
+          {name}
+          {JSON.stringify(id)}
+          Hey App
+        </Text>
+
         <View style={styles.inputView}>
                <TextInput style={styles.inputText} placeholder="Username" />
         </View>
@@ -12,7 +19,7 @@ return(
         <View style= {styles.inputView}>
            <TextInput style={styles.inputText} placeholder="Password" placeholderTextColor="#003f5c" />
         </View>
-        <Text style={styles.forgot}> Forgot Password </Text>
+        <Text style={styles.forgot} secureTextEntry> Forgot Password </Text>
         <View style={styles.loginButton}>
            <Text>Login</Text>
         </View>

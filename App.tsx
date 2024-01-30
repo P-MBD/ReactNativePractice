@@ -15,7 +15,10 @@ function HomeScreen({ navigation }) {
         onPress={() => {navigation.navigate("Login")}}/>
       <Button
         title="Login"
-        onPress={() => {navigation.navigate("Login")}}
+        onPress={() => {navigation.navigate("Login",{
+          id:1,
+          "name" : "Android"
+        })}}
        />
         <Button
         title="Profile"
