@@ -2,12 +2,12 @@ import React from "react";
 import {View, Text, TextInput, StyleSheet} from 'react-native';
 
 const Login= ({ route, navigation })=> {
-  const { id,name } = route.params;
+  const { id, name, title } = route.params;
 
 return(
     <View style={styles.container}>
         <Text style={styles.logo}>
-          {name}
+          {title}
           {JSON.stringify(id)}
           Hey App
         </Text>

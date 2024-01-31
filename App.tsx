@@ -16,8 +16,9 @@ function HomeScreen({ navigation }) {
       <Button
         title="Login"
         onPress={() => {navigation.navigate("Login",{
+          title:'Test params',
           id:1,
-          "name" : "Android"
+          name : "Android"
         })}}
        />
         <Button
@@ -34,9 +35,11 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Home" component={HomeScreen}
+        options={{title: "NotePad"}} 
+        />
         <Stack.Screen name="Login" component={Login}
-              options={{title: "Login Page"}}
+                options={({ route }) => ({ title: route.params.title })}
          />
         <Stack.Screen name="Profile" component={Profile} />
       </Stack.Navigator>
