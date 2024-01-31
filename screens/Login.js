@@ -1,5 +1,5 @@
 import React from "react";
-import {View, Text, TextInput, StyleSheet} from 'react-native';
+import {View,Button, Text, TextInput, StyleSheet} from 'react-native';
 
 const Login= ({ route, navigation })=> {
   const { id, name, title } = route.params;
@@ -7,7 +7,7 @@ const Login= ({ route, navigation })=> {
 return(
     <View style={styles.container}>
         <Text style={styles.logo}>
-          {title}
+          {name}
           {JSON.stringify(id)}
           Hey App
         </Text>
@@ -24,7 +24,10 @@ return(
            <Text>Login</Text>
         </View>
        
-        <Text style={styles.signUp}> Sign Up</Text>
+        <Text style={styles.signUp} onPress={()=>{
+          navigation.setOptions({title: 'Login New'})
+        }}>Sign Up</Text>
+        
     </View>
 )}
 

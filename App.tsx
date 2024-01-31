@@ -36,7 +36,11 @@ function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={HomeScreen}
-        options={{title: "NotePad"}} 
+        options={{title: "NotePad",
+        headerStyle: {
+          backgroundColor: '#f4511e',
+        },
+      }}
         />
         <Stack.Screen name="Login" component={Login}
                 options={({ route }) => ({ title: route.params.title })}
