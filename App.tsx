@@ -5,6 +5,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from './screens/Login';
 import Profile from './screens/Profile';
+import { Alert } from './node_modules/react-native/types/index';
+import Dashboard from './screens/Dashboard';
 
 
 function HomeScreen({ navigation }) {
@@ -22,8 +24,8 @@ function HomeScreen({ navigation }) {
         })}}
        />
         <Button
-        title="Profile"
-        onPress={() => {navigation.navigate("Profile")}}
+        title="Dashboard"
+        onPress={() => {navigation.navigate('Dashboard')}}
        />
     </View>
   );
@@ -38,14 +40,21 @@ function App() {
         <Stack.Screen name="Home" component={HomeScreen}
         options={{title: "NotePad",
         headerStyle: {
-          backgroundColor: '#f4511e',
+          backgroundColor: '#4A148C',
         },
+        headerRight: () => (
+          <Button onPress={() => alert('This is a button!')}
+          title="Info"
+           />
+        ),
+        headerTintColor:'#FFFFFF',
       }}
         />
         <Stack.Screen name="Login" component={Login}
                 options={({ route }) => ({ title: route.params.title })}
          />
         <Stack.Screen name="Profile" component={Profile} />
+        <Stack.Screen name="Dashboard" component={Dashboard}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
