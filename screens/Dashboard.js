@@ -4,7 +4,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import Chat from "./Chat";
 import Call from "./Call";
 const Tab = createBottomTabNavigator();
-function Dashboard(){
+function Dashboard({navigation}){
     return(
         
            <Tab.Navigator>

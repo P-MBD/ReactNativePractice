@@ -3,59 +3,34 @@ import { View, Text, Button } from 'react-native';
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Login from './screens/Login';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import HomeScreen from './screens/HomeScreen';
 import Profile from './screens/Profile';
-import { Alert } from './node_modules/react-native/types/index';
 import Dashboard from './screens/Dashboard';
 
 
-function HomeScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Home Screen</Text>
-      <Button title="Click" 
-        onPress={() => {navigation.navigate("Login")}}/>
-      <Button
-        title="Login"
-        onPress={() => {navigation.navigate("Login",{
-          title:'Test params',
-          id:1,
-          name : "Android"
-        })}}
-       />
-        <Button
-        title="Dashboard"
-        onPress={() => {navigation.navigate('Dashboard')}}
-       />
-    </View>
-  );
-}
+const Drawer = createDrawerNavigator();
 
-const Stack = createNativeStackNavigator();
-
+const HomeStack= createNativeStackNavigator();
+const HomeStackScreen =()=>(
+  <HomeStack.Navigator>
+        <HomeStack.Screen name="Home" component={HomeScreen}></HomeStack.Screen>
+  </HomeStack.Navigator>
+)
+const ProfileStack = createNativeStackNavigator();
+const ProfileStackScreen = ()=> (
+  <ProfileStack.Navigator  initialRouteName="Dashboard">
+      <ProfileStack.Screen name="Profile" component={Profile}></ProfileStack.Screen>
+      <ProfileStack.Screen name="Dashboard" component={Dashboard}></ProfileStack.Screen>
+  </ProfileStack.Navigator>
+)
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen}
-        options={{title: "NotePad",
-        headerStyle: {
-          backgroundColor: '#4A148C',
-        },
-        headerRight: () => (
-          <Button onPress={() => alert('This is a button!')}
-          title="Info"
-           />
-        ),
-        headerTintColor:'#FFFFFF',
-      }}
-        />
-        <Stack.Screen name="Login" component={Login}
-                options={({ route }) => ({ title: route.params.title })}
-         />
-        <Stack.Screen name="Profile" component={Profile} />
-        <Stack.Screen name="Dashboard" component={Dashboard}/>
-      </Stack.Navigator>
+      <Drawer.Navigator initialRouteName="HomeStack">
+          <Drawer.Screen name="HomeStack" component={HomeStackScreen}/> 
+          <Drawer.Screen name="ProfileStack" component={ProfileStackScreen}  />
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 }
