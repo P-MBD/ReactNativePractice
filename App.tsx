@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import HomeScreen from './screens/HomeScreen';
+import AddNote from './screens/AddNote';
 import Profile from './screens/Profile';
 import Dashboard from './screens/Dashboard';
 
@@ -12,9 +13,21 @@ import Dashboard from './screens/Dashboard';
 const Drawer = createDrawerNavigator();
 
 const HomeStack= createNativeStackNavigator();
-const HomeStackScreen =()=>(
+const HomeStackScreen =({navigation})=>(
   <HomeStack.Navigator>
-        <HomeStack.Screen name="Home" component={HomeScreen}></HomeStack.Screen>
+        <HomeStack.Screen name="Home" component={HomeScreen} 
+         options={{
+          Title: "Note",
+          headerRight: () => (
+            <Button
+              onPress={() => navigation.navigate('AddNote')}
+              title="Info"
+              color="#000"
+            />
+          ),
+        }}
+        ></HomeStack.Screen>
+        <HomeStack.Screen name="AddNote" component={AddNote}></HomeStack.Screen>
   </HomeStack.Navigator>
 )
 const ProfileStack = createNativeStackNavigator();
