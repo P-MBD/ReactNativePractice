@@ -1,8 +1,23 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image, Alert } from 'react-native'
+import Database from '../db/Database'
 import SQLite from 'react-native-sqlite-2'
-const db = SQLite.openDatabase('note.db', '1.0', '', 1) 
-function AddNote(){
+
+const myDB= new Database()
+
+const  AddNote =()=>{
+  const [title, setTitle] = React.useState('')
+  const [description, setDescription] = React.useState('')
+  const [timeNote, setTimeNote] = React.useState('')
+  const [dateNote, setDateNote] = React.useState('')
+  useEffect(()=> {
+    console.log("test")
+    myDB.createTable()
+    
+  },[])
+  function addNote(){
+    myDB.insertNote(title, description, timeNote , dateNote)
+  }
     return(
         <View style={styles.container}>
         <Image
@@ -12,9 +27,9 @@ function AddNote(){
         <View style={styles.inputContainer}>
           <TextInput
             style={styles.inputs}
-            placeholder="Full name"
+            placeholder="Title"
             underlineColorAndroid="transparent"
-          
+            onChangeText={title=>setTitle(title)}
           />
           <Image
             style={styles.inputIcon}
@@ -29,7 +44,7 @@ function AddNote(){
             style={styles.inputs}
             placeholder="Description"
             underlineColorAndroid="transparent"
-         
+            onChangeText={description=>setDescription(description)}
           />
           <Image
             style={styles.inputIcon}
@@ -42,7 +57,7 @@ function AddNote(){
             style={styles.inputs}
             placeholder="Date"
             underlineColorAndroid="transparent"
-         
+            onChangeText={dateNote=>setDateNote(dateNote)}
           />
           <Image
             style={styles.inputIcon}
@@ -50,10 +65,24 @@ function AddNote(){
           />
         </View>
   
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.inputs}
+            placeholder="Time"
+            underlineColorAndroid="transparent"
+            onChangeText={timeNote=>setTimeNote(timeNote)}
+          />
+          <Image
+            style={styles.inputIcon}
+            source={{ uri: 'https://img.icons8.com/color/40/000000/password.png' }}
+          />
+        </View>
        
   
         <TouchableOpacity
-          style={[styles.buttonContainer, styles.loginButton]}>
+          style={[styles.buttonContainer, styles.loginButton]} onPress={()=>{
+            addNote()
+          }}>
           <Text style={styles.loginText}>Add Note</Text>
         </TouchableOpacity>
   

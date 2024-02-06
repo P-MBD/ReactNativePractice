@@ -8,6 +8,7 @@ import HomeScreen from './screens/HomeScreen';
 import AddNote from './screens/AddNote';
 import Profile from './screens/Profile';
 import Dashboard from './screens/Dashboard';
+import Splash from './screens/Splash';
 
 
 const Drawer = createDrawerNavigator();
@@ -38,6 +39,18 @@ const ProfileStackScreen = ()=> (
   </ProfileStack.Navigator>
 )
 function App() {
+  const [isLoading, setIsLoading]= React.useState(true);
+  React.useEffect(()=> {
+    setTimeout(()=>{ 
+      setIsLoading(false)
+    },2000)
+  },[])
+
+  if(isLoading){
+      return(
+        <Splash></Splash>
+      )
+  }
   return (
     <NavigationContainer>
       <Drawer.Navigator initialRouteName="HomeStack">
