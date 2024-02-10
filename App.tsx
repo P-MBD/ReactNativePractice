@@ -18,14 +18,17 @@ const HomeStackScreen =({navigation})=>(
   <HomeStack.Navigator>
         <HomeStack.Screen name="Home" component={HomeScreen} 
          options={{
-          Title: "Note",
-          headerRight: () => (
-            <Button
-              onPress={() => navigation.navigate('AddNote')}
-              title="Info"
-              color="#000"
-            />
-          ),
+          title: "Note",
+          headerTintColor: '#fff',
+          headerStyle:{
+            backgroundColor:'#3f51b5',
+          },
+          headerTitleStyle: {
+            fontWeight: 'bold',
+            textAlign: 'center',
+            alignSelf:'center',
+          },
+        
         }}
         ></HomeStack.Screen>
         <HomeStack.Screen name="AddNote" component={AddNote}></HomeStack.Screen>
