@@ -17,7 +17,13 @@ class Database {
                     [title, description, timeNote , dateNote]);
               })
             }
-
+        
+        deleteNote(noteId){
+          const db = SQLite.openDatabase('note.db', '1.0', '', 1) 
+          db.transaction(function(trx){
+            trx.executeSql("delete from tbl_note where id="+noteId+" ")
+          })
+        }
    
 }
 export default Database;
